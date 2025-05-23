@@ -1,0 +1,48 @@
+{
+    "test": {
+        "scenario": "test",
+        "command_list": [
+            "test"
+        ],
+        "creation_date": "2025-05-23",
+        "last_revision_date": "2025-05-23",
+        "retention_rate": 1.0,
+        "force": 3.2,
+        "success": true
+    },
+    "tesst2": {
+        "scenario": "test2",
+        "command_list": [
+            "test_2",
+            "test_2",
+            "test_2"
+        ],
+        "creation_date": "2025-05-23",
+        "last_revision_date": "2025-05-23",
+        "retention_rate": 0.5,
+        "force": null,
+        "success": null
+    },
+    "test4": {
+        "scenario": "rzelaknz",
+        "command_list": [
+            "test4"
+        ],
+        "creation_date": "2025-05-23",
+        "last_revision_date": null,
+        "retention_rate": 0.5,
+        "force": null,
+        "success": null
+    },
+    "touch is_finally_here_in_presentiel": {
+        "scenario": "dlfjlqkjbfqlkdjfhqdslkjfh",
+        "command_list": [
+            "mkdir xavier"
+        ],
+        "creation_date": "2025-05-23",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    }
+}
