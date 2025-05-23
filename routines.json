@@ -9,5 +9,19 @@
         "retention_rate": null,
         "force": null,
         "success": null
+    },
+    "proper configuration for non root usage of kubernetes": {
+        "scenario": "move minikube config file to a place, change its owner, and modify kubeconfig env var",
+        "command_list": [
+            "cp /etc/rancher/k3s/k3s.yaml ~/.kube/config",
+            "sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config",
+            "chown \"$USER:$USER\" ~/.kube/config",
+            "export KUBECONFIG=\"/.kube/config"
+        ],
+        "creation_date": "2025-05-23",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
     }
 }
