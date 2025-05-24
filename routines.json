@@ -49,5 +49,80 @@
         "retention_rate": null,
         "force": null,
         "success": null
+    },
+    "Create users from script": {
+        "scenario": "create users from input.csv file with automatic creation of user directory and password",
+        "command_list": [
+            "input=\"utilisateurs.csv\"",
+            "while IFS='",
+            "' read -r username email",
+            "do",
+            "sudo useradd -m \"$username\"",
+            "echo \"$username:password\" | sudo chpasswd",
+            "sudo mkdir -p /var/mail/$username",
+            "echo \"Utilisateur $username créé avec l'email $email.\"",
+            "done < \"$input\""
+        ],
+        "creation_date": "2025-05-24",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "tls for pstfix": {
+        "scenario": "create self signed cert for postfix usage, specify file position to postfix conf, restart postfix for configuration",
+        "command_list": [
+            "sudo openssl req -new -x509 -days 365 -nodes -out /etc/ssl/certs/mailcert.pem -keyout /etc/ssl/private/mailkey.pem -subj \"/CN=mail.example.com\"",
+            "sudo postconf -e 'smtpd_tls_cert_file=/etc/ssl/certs/mailcert.pem'",
+            "sudo postconf -e 'smtpd_tls_key_file=/etc/ssl/private/mailkey.pem",
+            "sudo postconf -e 'smtpd_use_tls=yes'",
+            "sudo systemctl restart postfix",
+            "echo \"TLS configuré pour Postfix avec succès.\""
+        ],
+        "creation_date": "2025-05-24",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "tls usage debug": {
+        "scenario": "verify tls usage for postfix via conf, then via logs",
+        "command_list": [
+            "sudo postconf | grep tls",
+            "sudo tail /var/log/mail.log"
+        ],
+        "creation_date": "2025-05-24",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "dovecot": {
+        "scenario": "use dovecot for imap and pop3 usage with postfix",
+        "command_list": [
+            "sudo apt update && sudo apt install -y dovecot-imapd dovecot-pop3d",
+            "sudo sed -i 's/^#protocols = imap pop3 lmtp/protocols = imap pop3/' /etc/dovecot/dovecot.conf",
+            "sudo sed -i 's/^#mail_location =/mail_location = maildir:/var/mail/vhosts/%d/%n/' /etc/dovecot/conf.d/10-mail.conf",
+            "sudo systemctl restart dovecot"
+        ],
+        "creation_date": "2025-05-24",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "dovecot debug": {
+        "scenario": "use some command for debugging dovecot/manual usage /imap*",
+        "command_list": [
+            "sudo systemctl status dovecot",
+            "sudo journalctl -xe",
+            "sudo tail /var/log/mail.log",
+            "(or use fetchmail)"
+        ],
+        "creation_date": "2025-05-24",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
     }
 }
