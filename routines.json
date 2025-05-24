@@ -23,5 +23,31 @@
         "retention_rate": null,
         "force": null,
         "success": null
+    },
+    "postfix": {
+        "scenario": "configure and use postfix",
+        "command_list": [
+            "sudo apt update",
+            "sudo apt install -y postfix mailutils",
+            "sudo systemctl restart postfix",
+            "echo \"Test Email\" | mail -s \"Test Subject\"  root@etna.nx"
+        ],
+        "creation_date": "2025-05-24",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "debug postfix": {
+        "scenario": "check postfix status and get tail for mail logs from postfix",
+        "command_list": [
+            "sudo systemctl status postfix",
+            "sudo tail /var/log/mail.log"
+        ],
+        "creation_date": "2025-05-24",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
     }
 }
