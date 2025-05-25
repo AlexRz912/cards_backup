@@ -1,4 +1,15 @@
 {
+    "test": {
+        "scenario": "test",
+        "command_list": [
+            "test"
+        ],
+        "creation_date": "2025-05-23",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
     "proper configuration for non root usage of kubernetes": {
         "scenario": "move minikube config file to a place, change its owner, and modify kubeconfig env var",
         "command_list": [
@@ -109,6 +120,75 @@
             "(or use fetchmail)"
         ],
         "creation_date": "2025-05-24",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "start_cluster": {
+        "scenario": "start a minikube cluster and open dashboard",
+        "command_list": [
+            "minikube start",
+            "minikube dashboard --url"
+        ],
+        "creation_date": "2025-05-25",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "info_cluster": {
+        "scenario": "get infos for deployments, pods, events, logs.. etc",
+        "command_list": [
+            "kubectl get deployments",
+            "kubectl get pods",
+            "kubectl get events",
+            "kubectl config view",
+            "kubectl logs hello-node-5f76cf6ccf-br9b5"
+        ],
+        "creation_date": "2025-05-25",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "expose_svc_and_browse_it": {
+        "scenario": "Create a deployment, expose it, see your service with CLI and in web-browser",
+        "command_list": [
+            "kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.39 -- /agnhost netexec --http-port=8080",
+            "kubectl expose deployment hello-node --type=LoadBalancer --port=8080",
+            "kubectl get services",
+            "minikube service hello-node"
+        ],
+        "creation_date": "2025-05-25",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "kube addons": {
+        "scenario": "list supported addons, enable metrics for kubernetes",
+        "command_list": [
+            "minikube addons list",
+            "minikube addons enable metrics-server",
+            "kubectl get pod",
+            "svc -n kube-system",
+            "kubectl top pods"
+        ],
+        "creation_date": "2025-05-25",
+        "last_revision_date": null,
+        "retention_rate": null,
+        "force": null,
+        "success": null
+    },
+    "clean_up kube": {
+        "scenario": "clean up deployment, service and delete minikube cluster",
+        "command_list": [
+            "kubectl delete service hello-node",
+            "kubectl delete deployment hello-node",
+            "minikube stop"
+        ],
+        "creation_date": "2025-05-25",
         "last_revision_date": null,
         "retention_rate": null,
         "force": null,
