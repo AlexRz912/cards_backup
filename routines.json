@@ -1,15 +1,4 @@
 {
-    "test": {
-        "scenario": "test",
-        "command_list": [
-            "test"
-        ],
-        "creation_date": "2025-05-23",
-        "last_revision_date": null,
-        "retention_rate": null,
-        "force": null,
-        "success": null
-    },
     "proper configuration for non root usage of kubernetes": {
         "scenario": "move minikube config file to a place, change its owner, and modify kubeconfig env var",
         "command_list": [
